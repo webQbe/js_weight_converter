@@ -22,10 +22,11 @@
     <div class="container">
         <div class="row">
             <!-- create a 6 column div -->
-             <div class="col-md-6">
+             <div class="col-md-6 offset-md-3">
                 <h1 class="display-4 text-center mb-3">Weight Converter</h1>
                 <form>
                     <div class="form-group">
+                        <!-- input has up & down arrows -->
                         <input id="lbsInput" type="number" class="form-control form-control-lg" placeholder="Enter Pounds...">
                     </div>
                  </form>
@@ -33,29 +34,49 @@
                     <div class="card bg-primary mb-2 p-3">
                         <div class="card-block">
                             <h4>Grams:</h4>
-                            <div class="gramsOutput">
+                            <div id="gOutput">
                             </div>
                         </div>
                     </div>
                     <div class="card bg-success mb-2 p-3">
                         <div class="card-block">
                             <h4>Kilograms:</h4>
-                            <div class="kgOutput">
+                            <div id="kgOutput">
                             </div>
                         </div>
                     </div>
                     <div class="card bg-danger p-3">
                         <div class="card-block">
                             <h4>Ounces:</h4>
-                            <div class="ozOutput">
+                            <div id="ozOutput">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    
     </div>  
     </div>
+    <script>
+        // make cards hidden by default
+        document.getElementById('output').style.visibility = 'hidden';
+
+        // listen to input event in lbsInput & run function
+        document.getElementById('lbsInput').addEventListener('input', function(e){
+            
+            // make cards visible 
+            document.getElementById('output').style.visibility = 'visible';
+
+            // get input value
+            let lbsInput = e.target.value;
+            console.log(lbsInput);
+
+            // select cards, calculate & display 
+            document.getElementById('gOutput').innerHTML = lbsInput/0.0022046;
+            document.getElementById('kgOutput').innerHTML = lbsInput/2.2046;
+            document.getElementById('ozOutput').innerHTML = lbsInput*16;
+
+        });
+    </script>
 </body>
 </html>
